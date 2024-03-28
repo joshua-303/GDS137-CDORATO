@@ -12,7 +12,11 @@ ball.draw();
 function animate() {
     context.clearRect(0,0,canvas.width, canvas.height);
 
-    ball.x += ball.vx;
+    ball.move();
+
+    if(ball.x > canvas.width - ball.width/2) {
+        ball.vx = -ball.vx;
+    }
 
     ball.draw();
 }

@@ -7,7 +7,7 @@ class Ball {
         this.height = 100;
 
         this.vx = 2;
-        this.vy = 2;
+        this.vy = 0;
 
         this.color = "#ff0000";
 
