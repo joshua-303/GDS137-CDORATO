@@ -29,7 +29,7 @@ function animate() {
 
     ball.move();
 
-    if(ball.x >= canvas.width - ball.width/2 || ball.x <= 0 + ball.width/2) {
+    if(ball.x >= canvas.width - ball.width/2 || ball.x <= 0 + ball.width/2 || player.testCollide(ball)) {
         ball.vx+=ball.xAccel;
         ball.vx = -ball.vx;
         ball.xAccel = -ball.xAccel;
@@ -38,7 +38,7 @@ function animate() {
         //console.log("XACCEL: " + ball.xAccel);
     }
 
-    if(ball.y >= canvas.height - ball.height/2 || ball.y <= 0 + ball.height/2) {
+    if(ball.y >= canvas.height - ball.height/2 || ball.y <= 0 + ball.height/2 || player.testCollide(ball)) {
         ball.vy+=ball.yAccel;
         ball.vy = -ball.vy
         ball.yAccel = -ball.yAccel;
@@ -46,6 +46,12 @@ function animate() {
         //console.log("VY: " + ball.vy);
         //console.log("YACCEL: " + ball.yAccel)
     }
+
+    /*if(ball.testCollide(player)) {
+        console.log("True");
+    } else {
+        console.log("False");
+    }*/
 
     //prints collCount to h1 "test" in the html file
     document.getElementById("test").innerHTML = collCount + " HITS";

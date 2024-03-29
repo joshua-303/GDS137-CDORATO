@@ -68,4 +68,31 @@ class GameObj {
         this.x += this.vx;
         this.y += this.vy;
     }
+
+    left() {
+        return this.x - this.width/2;
+    }
+
+    right() {
+        return this.x + this.width/2;
+    }
+
+    top() {
+        return this.y - this.height/2;
+    }
+
+    bottom() {
+        return this.y + this.height/2;
+    }
+
+    testCollide(obj) {
+        if (this.left() < obj.right() &&
+            this.right() > obj.left() &&
+            this.top() < obj.bottom() &&
+            this.bottom() > obj.top()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
