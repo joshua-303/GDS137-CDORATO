@@ -12,7 +12,7 @@ ball.draw();
 function animate() {
     context.clearRect(0,0,canvas.width, canvas.height);
 
-    //caps vx and vy to the speed cap, sCap (set to 10)
+    //caps vx and vy at the speed cap, sCap (set to 10)
     if (ball.vx == ball.sCap && ball.xAccel == 1 || ball.vx == -ball.sCap && ball.xAccel == -1) {
         ball.xAccel = 0;
     }
