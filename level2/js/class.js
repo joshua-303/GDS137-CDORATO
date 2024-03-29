@@ -32,8 +32,8 @@ class GameObj {
         }
 
         //horizontal and vertical speeds
-        this.vx = 1;
-        this.vy = 1;
+        this.vx = 2;
+        this.vy = 2;
 
         //rate of acceleration (when colliding with walls)
         this.xAccel = 1;
