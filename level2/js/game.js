@@ -3,7 +3,8 @@ var context = canvas.getContext("2d");
 var interval = 1000/60;
 var collCount = 0;
 
-var player = new GameObj(50, canvas.height/2, 20, 120, "#ff0000");
+var player = new GameObj(50, canvas.height/2, 20, 180, "#ff0000");
+var ball = new GameObj();
 
 var timer = setInterval(animate, interval);
 
@@ -11,14 +12,13 @@ function animate() {
     context.clearRect(0,0,canvas.width, canvas.height);
 
     if(w && player.y > 0 + player.height/2) {
-        player.y-=2;
+        player.y-=5;
     }
     if(s && player.y < canvas.height - player.height/2) {
-        player.y+=2;
+        player.y+=5;
     }
 
-    player.drawRect();
-    /* //caps vx and vy at the speed cap, sCap (set to 10)
+    //caps vx and vy at the speed cap, sCap (set to 10)
     if (ball.vx == ball.sCap && ball.xAccel == 1 || ball.vx == -ball.sCap && ball.xAccel == -1) {
         ball.xAccel = 0;
     }
@@ -50,5 +50,6 @@ function animate() {
     //prints collCount to h1 "test" in the html file
     document.getElementById("test").innerHTML = collCount + " HITS";
 
-    ball.draw(); */
+    player.drawRect();
+    ball.drawCircle();
 }
