@@ -5,6 +5,8 @@ var collCount = 0;
 
 var player = new GameObj(50, canvas.height/2, 20, 180, "#ff0000");
 var ball = new GameObj();
+ball.width = 50;
+ball.height = 50;
 
 var timer = setInterval(animate, interval);
 
@@ -29,18 +31,29 @@ function animate() {
 
     ball.move();
 
-    if(ball.x >= canvas.width - ball.width/2 || ball.x <= 0 + ball.width/2 || player.testCollide(ball)) {
-        ball.vx+=ball.xAccel;
-        ball.vx = -ball.vx;
-        ball.xAccel = -ball.xAccel;
-        collCount++;
+    if(ball.x >= canvas.width - ball.width/2 || ball.x <= 0 + ball.width/2) {
+        ball.vx = -2;
+        ball.vy = -2;
+        ball.xAccel = 1;
+        ball.yAccel = 1;
+        ball.x = canvas.width/2;
+        ball.y = canvas.height/2;
+        collCount = 0;
         //console.log("VX: " + ball.vx);
         //console.log("XACCEL: " + ball.xAccel);
     }
 
-    if(ball.y >= canvas.height - ball.height/2 || ball.y <= 0 + ball.height/2 || player.testCollide(ball)) {
+    if(player.testCollide(ball)) {
+        ball.vx = -ball.vx;
+        ball.vy = -ball.vy;
+        ball.xAccel = -ball.xAccel;
+        ball.yAccel = -ball.yAccel;
+        collCount++;
+    }
+
+    if(ball.y >= canvas.height - ball.height/2 || ball.y <= 0 + ball.height/2) {
         ball.vy+=ball.yAccel;
-        ball.vy = -ball.vy
+        ball.vy = -ball.vy;
         ball.yAccel = -ball.yAccel;
         collCount++;
         //console.log("VY: " + ball.vy);
