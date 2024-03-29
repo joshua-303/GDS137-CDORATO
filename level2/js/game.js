@@ -3,15 +3,21 @@ var context = canvas.getContext("2d");
 var interval = 1000/60;
 var collCount = 0;
 
-var player = new GameObj(50, canvas.height/2, 20, 80, "#ff0000");
-
-player.drawRect();
+var player = new GameObj(50, canvas.height/2, 20, 120, "#ff0000");
 
 var timer = setInterval(animate, interval);
 
 function animate() {
-    //context.clearRect(0,0,canvas.width, canvas.height);
+    context.clearRect(0,0,canvas.width, canvas.height);
 
+    if(w) {
+        player.y-=2;
+    }
+    if(s) {
+        player.y+=2;
+    }
+
+    player.drawRect();
     /* //caps vx and vy at the speed cap, sCap (set to 10)
     if (ball.vx == ball.sCap && ball.xAccel == 1 || ball.vx == -ball.sCap && ball.xAccel == -1) {
         ball.xAccel = 0;
