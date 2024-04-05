@@ -65,6 +65,7 @@ function animate() {
 
     //if ball hits certain parts of paddle, bounce up, directly back, or down
     if(player.testCollide(ball)) {
+        ball.x = player.x + player.width/2 + ball.width/2;
         ball.vx += ball.xAccel;
         if(ball.y < player.y - player.height/6) {
             ball.vy = -Math.abs(ball.vy);
@@ -78,6 +79,7 @@ function animate() {
     }
 
     if(playerTwo.testCollide(ball)) {
+        ball.x = playerTwo.x - playerTwo.width/2 - ball.width/2;
         ball.vx += ball.xAccel;
         if(ball.y < playerTwo.y - playerTwo.height/6) {
             ball.vy = -Math.abs(ball.vy);
