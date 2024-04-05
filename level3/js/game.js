@@ -109,6 +109,15 @@ function animate() {
     document.getElementById("test").innerHTML = "P1 SCORE: " + player1Score;
     document.getElementById("test2").innerHTML = "P2 SCORE: " + player2Score;
 
+    context.save();
+        context.strokeStyle = "#54e5ff";
+        context.beginPath();
+        context.moveTo(canvas.width/2, 0);
+        context.lineTo(canvas.width/2, canvas.height);
+        context.closePath();
+        context.lineWidth = 5;
+        context.stroke();
+    context.restore();
     player.drawRect();
     playerTwo.drawRect();
     ball.drawCircle();
