@@ -4,11 +4,12 @@ var interval = 1000/60;
 var collCount = 0;
 
 var player = new GameObj(10, canvas.height/2, 20, 180, "#ff0000");
+var playerTwo = new GameObj(canvas.width - player.width/2, canvas.height/2, 20, 180, "#fcba03");
 var ball = new GameObj();
 ball.width = 50;
 ball.height = 50;
 ball.vx = -2;
-ball.vy = 1;
+ball.vy = 2;
 ball.xAccel = -1;
 
 var timer = setInterval(animate, interval);
@@ -21,6 +22,13 @@ function animate() {
     }
     if(s && player.y < canvas.height - player.height/2 /*&& !player.testCollide(ball)*/) {
         player.y+=5;
+    }
+
+    if(up && playerTwo.y > 0 + playerTwo.height/2) {
+        playerTwo.y-=5;
+    }
+    if(down && playerTwo.y < canvas.height - playerTwo.height/2 /*&& !player.testCollide(ball)*/) {
+        playerTwo.y+=5;
     }
 
     //caps vx and vy at the speed cap, sCap (set to 10)
@@ -47,11 +55,25 @@ function animate() {
         //console.log("XACCEL: " + ball.xAccel);
     }
 
+    //if ball hits certain parts of paddle, bounce up, directly back, or down
     if(player.testCollide(ball)) {
         ball.vx += ball.xAccel;
         if(ball.y < player.y - player.height/6) {
             ball.vy = -Math.abs(ball.vy);
         } else if (ball.y > player.y + player.height/6) {
+            ball.vy = Math.abs(ball.vy);
+        }
+        ball.vx = -ball.vx;
+        ball.xAccel = -ball.xAccel;
+        ball.yAccel = -ball.yAccel;
+        collCount++;
+    }
+
+    if(playerTwo.testCollide(ball)) {
+        ball.vx += ball.xAccel;
+        if(ball.y < playerTwo.y - playerTwo.height/6) {
+            ball.vy = -Math.abs(ball.vy);
+        } else if (ball.y > playerTwo.y + playerTwo.height/6) {
             ball.vy = Math.abs(ball.vy);
         }
         ball.vx = -ball.vx;
@@ -80,5 +102,6 @@ function animate() {
     document.getElementById("test").innerHTML = collCount + " HITS";
 
     player.drawRect();
+    playerTwo.drawRect();
     ball.drawCircle();
 }
