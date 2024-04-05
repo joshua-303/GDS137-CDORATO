@@ -3,6 +3,7 @@ var context = canvas.getContext("2d");
 var interval = 1000/60;
 var player1Score = 0;
 var player2Score = 0;
+var img = document.getElementById("ric");
 
 var player = new GameObj(10, canvas.height/2, 20, 180, "#ff0000");
 var playerTwo = new GameObj(canvas.width - player.width/2, canvas.height/2, 20, 180, "#fcba03");
@@ -120,5 +121,6 @@ function animate() {
     context.restore();
     player.drawRect();
     playerTwo.drawRect();
-    ball.drawCircle();
+    //ball.drawCircle();
+    context.drawImage(img, ball.x - ball.width/2, ball.y - ball.height/2, ball.width, ball.height);
 }
