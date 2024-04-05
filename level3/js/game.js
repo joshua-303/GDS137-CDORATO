@@ -1,7 +1,8 @@
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 var interval = 1000/60;
-var collCount = 0;
+var player1Score = 0;
+var player2Score = 0;
 
 var player = new GameObj(10, canvas.height/2, 20, 180, "#ff0000");
 var playerTwo = new GameObj(canvas.width - player.width/2, canvas.height/2, 20, 180, "#fcba03");
@@ -44,13 +45,19 @@ function animate() {
     
     //if ball hits left/right side of canvas
     if(ball.x >= canvas.width - ball.width/2 || ball.x <= 0 + ball.width/2) {
+        if(ball.x >= canvas.width - ball.width/2) {
+            player1Score++;
+        }
+        if(ball.x <= 0 + ball.width/2) {
+            player2Score++;
+        }
         ball.vx = -2;
         ball.vy = -1;
         ball.xAccel = -1;
         ball.yAccel = 1;
         ball.x = canvas.width/2;
         ball.y = canvas.height/2;
-        collCount = 0;
+        
         //console.log("VX: " + ball.vx);
         //console.log("XACCEL: " + ball.xAccel);
     }
@@ -66,7 +73,7 @@ function animate() {
         ball.vx = -ball.vx;
         ball.xAccel = -ball.xAccel;
         ball.yAccel = -ball.yAccel;
-        collCount++;
+        //collCount++;
     }
 
     if(playerTwo.testCollide(ball)) {
@@ -79,7 +86,7 @@ function animate() {
         ball.vx = -ball.vx;
         ball.xAccel = -ball.xAccel;
         ball.yAccel = -ball.yAccel;
-        collCount++;
+        //collCount++;
     }
 
     //if ball hits top/bottom of canvas
@@ -87,7 +94,7 @@ function animate() {
         //ball.vy += ball.yAccel;
         ball.vy = -ball.vy;
         ball.yAccel = -ball.yAccel;
-        collCount++;
+        //collCount++;
         //console.log("VY: " + ball.vy);
         //console.log("YACCEL: " + ball.yAccel)
     }
@@ -99,7 +106,8 @@ function animate() {
     }*/
 
     //prints collCount to h1 "test" in the html file
-    document.getElementById("test").innerHTML = collCount + " HITS";
+    document.getElementById("test").innerHTML = "P1 SCORE: " + player1Score;
+    document.getElementById("test2").innerHTML = "P2 SCORE: " + player2Score;
 
     player.drawRect();
     playerTwo.drawRect();

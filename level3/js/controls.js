@@ -7,7 +7,7 @@ document.addEventListener("keydown", press);
 document.addEventListener("keyup", release);
 
 function press(e) {
-    console.log(e.keyCode);
+    //console.log(e.keyCode);
 
     if(e.keyCode == 87) {
         w = true;
