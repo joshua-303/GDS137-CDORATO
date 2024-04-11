@@ -32,22 +32,27 @@ class GameObj {
         }
 
         //horizontal and vertical speeds
-        this.vx = 2;
-        this.vy = 2;
+        this.vx = 0;
+        this.vy = 0;
 
 
         //rate of acceleration (when colliding with walls)
-        this.xAccel = 1;
-        this.yAccel = 1;
+        this.px = 1;
+        this.py = 1;
+
+        this.force = 2;
 
         //speed cap
-        this.sCap = 10;
+        //this.sCap = 10;
 
         this.gravSpeed = 0;
 
         this.gravity = 1;
 
-        this.prevX
+        this.fx = 1;
+        this.fy = 1;
+
+        this.prevX;
     }
 
     drawCircle() {
