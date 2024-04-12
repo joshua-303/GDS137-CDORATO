@@ -88,7 +88,7 @@ function animate() {
 
     context.font = "16px Arial Black";
     context.fillStyle = "#555555";
-    context.fillText("Score = " + score, 80, 25)
+    context.fillText("Score = " + score, 80, 25);
 
     ball.drawCircle();
     paddle.drawRect();
