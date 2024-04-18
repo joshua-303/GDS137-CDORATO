@@ -20,6 +20,7 @@ function press(e) {
         w = true;
     }
 
+    keyHasReleased = false;
     newKey = e.keyCode;
     //console.log(newKey + ' ' + lastKeyPressed);
 }
@@ -35,5 +36,6 @@ function release(e) {
         w = false;
     }
 
+    keyHasReleased = true;
     lastKeyPressed = e.keyCode;
 }

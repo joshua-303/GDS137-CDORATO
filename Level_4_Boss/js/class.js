@@ -84,17 +84,17 @@ class GameObj {
     }
 
     testHitPoint(obj) {
-        if(obj.x >= this.left().x && 
-        obj.x <= this.right().x &&
-        obj.y >= this.top().y &&  
-        obj.y <= this.bottom().y)
+        if(obj.x >= this.collision.left().x && 
+        obj.x <= this.collision.right().x &&
+        obj.y >= this.collision.top().y &&  
+        obj.y <= this.collision.bottom().y)
      {
          return true;
      }
      return false;
     }
 
-    testCollide(obj) {
+    /*testCollide(obj) {
         if (this.left() < obj.right() &&
             this.right() > obj.left() &&
             this.top() < obj.bottom() &&
@@ -103,5 +103,5 @@ class GameObj {
         } else {
             return false;
         }
-    }
+    }*/
 }
