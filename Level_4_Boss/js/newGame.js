@@ -7,12 +7,12 @@ var jumpHeight = -20;
 var canJump = false;
 var walkButtonPressed = false;
 var dashUsed = false;
-var dashSpeed = 15;
+var dashSpeed = 12;
 var skid = false;
 var keyHasReleased = false;
 var triggerCoolDown = false;
 var triggerTimer = false;
-player.force = 0.55;
+player.force = 0.22;
 
 var keyReleaseTimer = 0;
 var coolDownTimer = 0;
@@ -23,12 +23,15 @@ function animate() {
     context.clearRect(0,0,canvas.width, canvas.height);
 
     if (skid) {
-        //console.log("True");
+        console.log("True");
     }
-    if (keyHasReleased && player.vx >= 20 || keyHasReleased && player.vx <= -20 || d && player.vx <= -20 || a && player.vx >= 20) {
+    if (keyHasReleased && player.vx >= 12 && lastKeyPressed != 87 && canJump
+        || keyHasReleased && player.vx <= -12 && lastKeyPressed != 87 && canJump
+        || d && player.vx <= -12 && canJump
+        || a && player.vx >= 12 && canJump) {
         skid = true;
     }
-    if (player.vx < 5 && player.vx >= 0 || player.vx > -5 && player.vx <= 0) {
+    if (player.vx < 5 && player.vx > -5) {
         skid = false;
     }
 
@@ -40,7 +43,7 @@ function animate() {
     if (triggerTimer) {
             keyReleaseTimer++;
             //console.log(keyReleaseTimer);
-            if (keyReleaseTimer >= 15) {
+            if (keyReleaseTimer >= 8) {
                 keyReleaseTimer = 0
                 triggerTimer = false;
             }
@@ -71,7 +74,7 @@ function animate() {
             keyReleaseTimer = 0;
             dashUsed = true;
             console.log("Dash!")
-        } else if(d) {
+        } else if(d && canJump) {
             player.vx += player.px * player.force;
             player.fx = 0;
             walkButtonPressed = true;
@@ -82,7 +85,7 @@ function animate() {
             keyReleaseTimer = 0;
             dashUsed = true;
             console.log("Dash!")
-        } else if(a) {
+        } else if(a && canJump) {
             player.vx += player.px * -player.force;
             player.fx = 0;
             walkButtonPressed = true;
@@ -90,6 +93,7 @@ function animate() {
     }
 
     player.vy += player.gravity;
+    //if player is moving + grounded, apply friction
     if(player.fx > 0 && canJump) {
         player.vx *= player.fx;
     }
@@ -99,7 +103,7 @@ function animate() {
         player.vx = 25;
     }
 
-    player.fx = 0.9
+    player.fx = 0.88
 
     player.move();
 
