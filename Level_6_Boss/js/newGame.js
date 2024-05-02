@@ -148,7 +148,7 @@ function animate() {
     if (wallHang && player.fy < 1) {
         if (Math.abs(lastVX) > 0 && Math.abs(lastVX) < 1) {
         } else {
-            lastVX*=0.98
+            lastVX*=0.9
             console.log(lastVX);
         }
         console.log("True");
