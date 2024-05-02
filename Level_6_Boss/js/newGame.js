@@ -85,7 +85,11 @@ function animate() {
             player.color = "#0100ff";
         }
         if (d && wallHang && player.x < canvas.width/2) {
-            player.vx = -lastVX;
+            if (Math.abs(lastVX) > 8) {
+                player.vx = -lastVX;
+                } else {
+                player.vx = 8;
+                }
             player.vy = jumpHeight;
             player.fy = 1;
             wallHang = false;
@@ -101,7 +105,11 @@ function animate() {
             walkButtonPressed = true;
         }
         if (a && wallHang && player.x > canvas.width/2) {
+            if (Math.abs(lastVX) > 8) {
             player.vx = -lastVX;
+            } else {
+            player.vx = -8;
+            }
             player.vy = jumpHeight;
             player.fy = 1;
             wallHang = false;
@@ -124,9 +132,9 @@ function animate() {
             console.log("Yea");
             player.vy+=25;
             if (d && player.vx < 0 || a && player.vx > 0) {
-                player.vx = -player.vx*.6;
+                player.vx = -player.vx*.75;
             } else {
-                player.vx*=0.75;
+                player.vx*=0.85;
             }
             dKick = false;
         }
