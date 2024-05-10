@@ -100,13 +100,13 @@ function animate() {
         hazard[i].move()
 			
 		if (collectible[i].y >= canvas.height + collectible[i].height || dead) { 
-			collectible[i].y = 0 - collectible[i].height;
+			collectible[i].y = randNum(-20, -300);
             collectible[i].x = randNum(0, canvas.width);
 			collectible[i].vy = randNum(5, 15);
 		}
 
         if (hazard[i].y >= canvas.height + hazard[i].height || dead) { 
-			hazard[i].y = 0 - hazard[i].height;
+			hazard[i].y = randNum(-20, -300);
             hazard[i].x = randNum(0, canvas.width);
 			hazard[i].vy = randNum(5, 15);
 		}
@@ -119,7 +119,7 @@ function animate() {
             player1Score++;
             console.log(player1Score);
             scored = true;
-            collectible[i].y = 0 - collectible[i].height;
+            collectible[i].y = randNum(-20, -300);
             collectible[i].x = randNum(0, canvas.width);
 			collectible[i].vy = randNum(5, 15);
         }
