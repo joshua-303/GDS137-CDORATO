@@ -3,6 +3,7 @@
 //--------------------Don't touch the walls.------------------------------------------------------------------
 //--------------------Read the commented instructions below to complete this assignment----------------------
 //--------------------Upload your completed file to the ict server and submit a link-------------------------
+//KEEP IT OPEN
 
 var canvas = document.getElementById("canvas");
 	canvas.addEventListener("mousemove", track);

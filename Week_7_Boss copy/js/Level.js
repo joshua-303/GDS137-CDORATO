@@ -112,7 +112,7 @@ function Level()
 					
 					case 2:
 						//creates the grid of objects
-						this.grid[g] = new GameObject({width:tileWidth, height:tileHeight, world:this});
+						this.grid[g] = new GameObj({width:tileWidth, height:tileHeight, world:this});
 						this.grid[g].x = x;
 						this.grid[g].y = y;
 						this.grid[g].color = "#335577";
