@@ -1,6 +1,7 @@
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 var stage = new createjs.Stage(canvas);
+var cid;
 
 context.save();
 context.fillStyle = "#ff0000";
@@ -30,15 +31,24 @@ function init() {
             "attack": [0, 5, "attack"]
         }
     })
-    var cid = new createjs.Sprite(spriteSheet, "attack");
+    cid = new createjs.Sprite(spriteSheet, "attack");
     cid.x = stage.canvas.width/2;
     cid.y = stage.canvas.height/2;
+    cid.scale = cid.originalScale = 3;
+
     stage.addChild(cid);
 
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
 	createjs.Ticker.addEventListener("tick", tick);
 }
 
-function tick(event) {
+
+function tick(event) {   
+    var deltaS = event.delta / 1000;
+	var position = cid.x + 150 * deltaS;
+
+	var cidW = cid.getBounds().width * cid.scaleX;
+	cid.x = (position >= stage.canvas.width + cidW) ? -cidW : position;
+
     stage.update(event);
 }
