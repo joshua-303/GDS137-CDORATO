@@ -33,7 +33,7 @@ var dJump = false;
 var dKick = false;
 var wallHang = false;
 var wallDir = "none";
-var playerState = "grounded";
+var playerState = "falling";
 var lastVX;
 var lastVY;
 var dashAtk = {aerial: false, trigger: false, keyReleased: false};
@@ -125,7 +125,7 @@ states["play"] = function() {
             keyReleaseTimer = 0;
             dashUsed = true;
             //console.log("Dash!")
-        } else if(d && playerState != "jumping") {
+        } else if(d && playerState == "grounded") {
             player.vx += player.px * player.force;
             player.fx = 0;
             walkButtonPressed = true;
@@ -146,7 +146,7 @@ states["play"] = function() {
             keyReleaseTimer = 0;
             dashUsed = true;
             //console.log("Dash!")
-        } else if(a && playerState != "jumping") {
+        } else if(a && playerState == "grounded") {
             player.vx += player.px * -player.force;
             player.fx = 0;
             walkButtonPressed = true;
@@ -231,7 +231,7 @@ states["play"] = function() {
         player.color = "#ffa500"
     }
 
-    player.fx = 0.88
+    player.fx = 0.85
 
     if (playerState != "jumping") playerState = "falling";
 
