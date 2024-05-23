@@ -22,21 +22,24 @@ function press() {
 	if(mouse.x > startButton.x - startButton.width/2 &&
     mouse.x < startButton.x + startButton.width/2 &&
     mouse.y > startButton.y - startButton.height/2 &&
-    mouse.y < startButton.y + startButton.height/2) {
+    mouse.y < startButton.y + startButton.height/2 &&
+    currentState == "menu") {
 		currentState = "play";
 	}
 
     if(mouse.x > helpButton.x - helpButton.width/2 &&
     mouse.x < helpButton.x + helpButton.width/2 &&
     mouse.y > helpButton.y - helpButton.height/2 &&
-    mouse.y < helpButton.y + helpButton.height/2) {
+    mouse.y < helpButton.y + helpButton.height/2 &&
+    currentState == "menu") {
         currentState = "help";
     }
 
     if(mouse.x > backButton.x - backButton.width/2 &&
     mouse.x < backButton.x + backButton.width/2 &&
     mouse.y > backButton.y - backButton.height/2 &&
-    mouse.y < backButton.y + backButton.height/2) {
+    mouse.y < backButton.y + backButton.height/2 &&
+    currentState == "help") {
         currentState = "menu";
     }
 }
